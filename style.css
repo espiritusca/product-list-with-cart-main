@@ -1,0 +1,138 @@
+:root {
+    --bg-main-color: hsl(20, 50%, 98%);
+    --bg-cart-color: white;
+
+    --font-red-color: hsl(14, 86%, 42%);
+    --font-title-color: hsl(14, 65%, 9%);
+    --font-category-color: hsl(12, 20%, 44%);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+/* CARDAPIO */
+
+body {
+    padding: 60px 230px;
+    background-color: var(--bg-main-color);
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    font-family: 'Red Hat Text', sans-serif;
+}
+
+.desserts-section {
+    height: 100%;
+    width: 75%;
+    margin-right: 30px;
+}
+
+h1 {
+    margin-bottom: 10px;
+    color: var(--font-title-color);
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+article {
+    width: 250px;
+}
+
+.image-div {
+    position: relative;
+}
+
+img {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.add-to-cart-button {
+    position: absolute;
+    background-image: url(assets/images/icon-add-to-cart.svg);
+    background-repeat: no-repeat;
+    background-position: 20px center;
+    background-color: var(--bg-cart-color);
+    padding: 10px 25px 10px 50px;
+    border: solid 1px var(--font-category-color);
+    border-radius: 20px;
+    cursor: pointer;
+    bottom: -5%;
+    left: 20%;
+    z-index: 1;
+}
+
+.item-details-div {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.add-to-cart-button:hover {
+    color: var(--font-red-color);
+    border-color: var(--font-red-color);
+}
+
+.item-category {
+    color: var(--font-category-color);
+    font-weight: 600;
+}
+
+.item-name {
+    color: var(--font-title-color);
+    font-weight: 700;
+}
+
+.item-price {
+    color: var(--font-red-color);
+    font-weight: 600;
+}
+
+/*LATERAL*/
+
+aside {
+    height: 100%;
+    width: 25%;
+    background-color: transparent;
+}
+
+.cart-section {
+    background-color: var(--bg-cart-color);
+    height: 250px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+h2 {
+    color: var(--font-red-color);
+}
+
+.empty-cart-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.empty-cart-figure img {
+    width: 150px;
+}
+
+.empty-cart-figure figcaption {
+    color: var(--font-category-color);
+}
