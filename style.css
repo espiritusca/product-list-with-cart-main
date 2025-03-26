@@ -5,6 +5,8 @@
     --font-red-color: hsl(14, 86%, 42%);
     --font-title-color: hsl(14, 65%, 9%);
     --font-category-color: hsl(12, 20%, 44%);
+
+    --font-button-hover-color: hsl(14, 94%, 26%);
 }
 
 * {
@@ -18,18 +20,18 @@ html, body {
     width: 100%;
 }
 
-/* CARDAPIO */
-
 body {
     padding: 60px 230px;
     background-color: var(--bg-main-color);
+    font-family: 'Red Hat Text', sans-serif;
 }
+
+/* LEFT */
 
 main {
     height: 100%;
     width: 100%;
     display: flex;
-    font-family: 'Red Hat Text', sans-serif;
 }
 
 .desserts-section {
@@ -41,6 +43,11 @@ main {
 h1 {
     margin-bottom: 10px;
     color: var(--font-title-color);
+    font-family: 'Red Hat Text', sans-serif;
+}
+
+p {
+    color: var(--font-category-color);
 }
 
 ul {
@@ -77,6 +84,8 @@ img {
     bottom: -5%;
     left: 20%;
     z-index: 1;
+    width: 150px;
+    height: 40px;
 }
 
 .item-details-div {
@@ -87,6 +96,41 @@ img {
 .add-to-cart-button:hover {
     color: var(--font-red-color);
     border-color: var(--font-red-color);
+}
+
+.add-to-cart-button.selected {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--font-red-color);
+    width: 150px;
+    height: 40px;
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: default;
+
+    left: 280px;
+    bottom: 190px;
+}
+
+.add-to-cart-button.selected svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border: solid white 1px;
+    border-radius: 50%;
+    padding: 3px;
+}
+
+.add-to-cart-button.selected svg:hover {
+    cursor: pointer;
+    background-color: var(--bg-cart-color);
+}
+
+.add-to-cart-button.selected svg:hover path {
+    fill: var(--font-red-color);
 }
 
 .item-category {
@@ -104,7 +148,7 @@ img {
     font-weight: 600;
 }
 
-/*LATERAL*/
+/* RIGHT */
 
 aside {
     height: 100%;
@@ -135,4 +179,118 @@ h2 {
 
 .empty-cart-figure figcaption {
     color: var(--font-category-color);
+}
+
+/* ORDER */
+
+#order-overlay-div {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.order-screen-section {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-cart-color);
+    width: 500px;
+    height: 500px;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.order-screen-section .confirmation-img {
+    width: 35px;
+    margin-bottom: 15px;
+}
+
+.orders-overlay-section {
+    margin-top: 20px;
+}
+
+.orders-overlay-section .order-article {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 80px;
+    background-color: var(--bg-main-color);
+    padding: 15px;
+    border-radius: 5px 5px 0 0;
+}
+
+.order-article::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    background-color: hsl(13, 31%, 94%);
+    height: 1px;
+    width: 92%;
+    left: 4%;
+}
+
+.order-article img {
+    width: 50px;
+    border-radius: 5px;
+}
+
+.details-overlay-div {
+    margin-left: 15px;
+    width: 70%;
+}
+
+.details-overlay-div p {
+    margin-bottom: 10px;
+}
+
+.details-overlay-div .count-span {
+    color: var(--font-red-color);
+    margin-right: 10px;
+    font-weight: 700;
+}
+
+.details-overlay-div .price-span {
+    color: var(--font-category-color);
+}
+
+.sub-total-item-p {
+    color: var(--font-title-color);
+    font-weight: 700;
+}
+
+.order-total-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 80px;
+    background-color: var(--bg-main-color);
+    padding: 15px;
+    border-radius: 0 0 5px 5px;
+}
+.order-total-div span {
+    color: var(--font-title-color);
+    font-weight: 400;
+}
+
+.order-total-div strong {
+    color: var(--font-title-color);
+    font-size: 22px;
+}
+
+.new-order-button {
+    background-color: var(--font-red-color);
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 20px;
 }

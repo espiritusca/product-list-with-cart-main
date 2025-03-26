@@ -44,4 +44,25 @@ async function loadItems() {
     } 
 }
 
+function orderScreenOverlay() {
+
+    const orderButton = document.getElementById('cart-button')
+    const overlay = document.getElementById('order-overlay-div')
+    const closeButton = document.querySelector('.new-order-button')
+
+orderButton.addEventListener('click', () => {
+    overlay.style.display = 'flex'
+    document.body.style.overflow = 'hidden'
+});
+
+closeButton.addEventListener('click', () => {
+    overlay.style.display = 'none'
+    document.body.style.overflow = 'auto'
+});
+
+}
+
 document.addEventListener('DOMContentLoaded', loadItems)
+
+orderScreenOverlay()
+

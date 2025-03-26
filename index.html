@@ -24,7 +24,7 @@
       <ul id="desserts-list">
 
         <!-- JSON DATA ITEMS -->
-         
+
       </ul>
 
     </section>
@@ -39,12 +39,69 @@
           <img src="assets/images/illustration-empty-cart.svg" alt="">
           <figcaption>Your added items will appear here</figcaption>
         </figure>
+
+        <button id="cart-button" type="button">Confirm Order</button>
         
       </section>
 
     </aside>
 
+    <button class="add-to-cart-button selected">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none" viewBox="0 0 10 2"><path fill="currentColor" d="M0 .375h10v1.25H0V.375Z"/></svg>
+      <span> 1 </span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="currentColor" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/></svg>
+      
+    </button>
+
   </main>
+
+  <!-- ORDER CONFIRMATION SCREEN -->
+
+  <div id="order-overlay-div">
+
+    <section class="order-screen-section">
+
+      <img src="assets/images/icon-order-confirmed.svg" alt="Confirmed" class="confirmation-img">
+      
+      <h1>Order Confirmed</h1>
+
+      <p>We hope you enjoy your food!</p>
+
+      <section class="orders-overlay-section">
+        <!-- 1 ORDER EXAMPLE -->
+        <article class="order-article">
+          
+          <img src="assets/images/image-waffle-thumbnail.jpg">
+
+          <div class="details-overlay-div">
+
+            <p class="item-name">Waffle with Berries</p>
+
+            <span class="count-span">1x</span>
+            <span class="price-span">@ $5.50</span>
+
+          </div>
+
+          <p class="sub-total-item-p">$5.50</p>
+
+        </article>
+
+        <div class="order-total-div">
+
+          <span>Order Total</span>
+
+          <strong>$5.50</strong>
+
+        </div>
+
+      </section>
+
+      <button class="new-order-button" type="button">Start New Order</button>
+
+    </section>
+
+  </div>
 
   <script src="script.js"></script>
 
