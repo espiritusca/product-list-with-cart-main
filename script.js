@@ -1,3 +1,11 @@
+document.addEventListener('DOMContentLoaded', async () => {
+    
+    await loadItems();
+    
+    orderScreenOverlay();
+    addToCartButtonSelected();
+});
+
 async function loadItems() {
     try {
         const response = await fetch('data.json')
@@ -48,21 +56,49 @@ function orderScreenOverlay() {
 
     const orderButton = document.getElementById('cart-button')
     const overlay = document.getElementById('order-overlay-div')
-    const closeButton = document.querySelector('.new-order-button')
+    const closeOverlay = document.querySelector('.new-order-button')
 
-orderButton.addEventListener('click', () => {
-    overlay.style.display = 'flex'
-    document.body.style.overflow = 'hidden'
-});
+    orderButton.addEventListener('click', () => {
+        overlay.style.display = 'flex'
+        document.body.style.overflow = 'hidden'
+    });
 
-closeButton.addEventListener('click', () => {
-    overlay.style.display = 'none'
-    document.body.style.overflow = 'auto'
-});
+    closeOverlay.addEventListener('click', () => {
+        overlay.style.display = 'none'
+        document.body.style.overflow = 'auto'
+    });
 
 }
 
-document.addEventListener('DOMContentLoaded', loadItems)
+function addToCartButtonSelected() {
 
-orderScreenOverlay()
+    document.querySelector('#desserts-list').addEventListener('click', (e) => {
+        const addToCartButton = e.target.closest('.add-to-cart-button');
+        if (!addToCartButton) return;
+    
+        const imageDiv = addToCartButton.closest('.image-div');
+        const image = imageDiv.querySelector('img');
+
+        image.style.outline = '2px solid var(--font-red-color)';
+        image.style.outlineOffSet = '0';
+
+        const parentDiv = addToCartButton.parentElement; 
+    
+        
+        const selectedButton = document.createElement('button');
+        selectedButton.className = 'add-to-cart-button selected';
+        selectedButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none" viewBox="0 0 10 2">
+                <path fill="currentColor" d="M0 .375h10v1.25H0V.375Z"/>
+            </svg>
+            <span>1</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
+                <path fill="currentColor" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/>
+            </svg>
+        `;
+    
+        parentDiv.replaceChild(selectedButton, addToCartButton);
+    });
+
+}
 
