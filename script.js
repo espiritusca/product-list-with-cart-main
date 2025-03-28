@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    
-    await loadItems();
-    
+
+    const loadedItems = await loadItems()
+
     orderScreenOverlay();
-    addToCartButtonSelected();
+    addToCartButtonSelected(loadedItems);
 });
 
 async function loadItems() {
@@ -15,9 +15,10 @@ async function loadItems() {
         const data_desserts = await response.json()
 
         const desserts_list = document.querySelector('#desserts-list');
-        
-        data_desserts.forEach(item => {
-            
+        desserts_list.innerHTML = '';
+
+        data_desserts.forEach((item, index) => {
+
             const li = document.createElement('li');
 
             li.innerHTML = `
@@ -27,7 +28,7 @@ async function loadItems() {
                     <div class="image-div">
                         <img src="${item.image.desktop}">
 
-                        <button class="add-to-cart-button" type="button">
+                        <button class="add-to-cart-button" type="button" data-index="${index}">
                             Add to Cart
                         </button>
 
@@ -44,12 +45,15 @@ async function loadItems() {
             `;
 
             desserts_list.appendChild(li);
-            
+
         });
 
-    } catch(error) {
+        return data_desserts;
+
+    } catch (error) {
         console.error(error);
-    } 
+        return [];
+    }
 }
 
 function orderScreenOverlay() {
@@ -70,35 +74,40 @@ function orderScreenOverlay() {
 
 }
 
-function addToCartButtonSelected() {
+function addToCartButtonSelected(itemsData) {
 
     document.querySelector('#desserts-list').addEventListener('click', (e) => {
         const addToCartButton = e.target.closest('.add-to-cart-button');
         if (!addToCartButton) return;
-    
+
+        const itemIndex = addToCartButton.getAttribute('data-index');
+        const itemData = itemsData[itemIndex];
+
+        console.log('Dados do item clicado:', itemData);
+
         const imageDiv = addToCartButton.closest('.image-div');
         const image = imageDiv.querySelector('img');
 
         image.style.outline = '2px solid var(--font-red-color)';
         image.style.outlineOffSet = '0';
 
-        const parentDiv = addToCartButton.parentElement; 
-    
-        
+        const parentDiv = addToCartButton.parentElement;
+
         const selectedButton = document.createElement('button');
         selectedButton.className = 'add-to-cart-button selected';
+        selectedButton.setAttribute('data-index', itemIndex);
         selectedButton.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none" viewBox="0 0 10 2">
-                <path fill="currentColor" d="M0 .375h10v1.25H0V.375Z"/>
-            </svg>
-            <span>1</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
-                <path fill="currentColor" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/>
-            </svg>
-        `;
-    
-        parentDiv.replaceChild(selectedButton, addToCartButton);
-    });
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none" viewBox="0 0 10 2">
+                    <path fill="currentColor" d="M0 .375h10v1.25H0V.375Z"/>
+                </svg>
+                <span>1</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
+                    <path fill="currentColor" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/>
+                </svg>
+            `;
 
+        parentDiv.replaceChild(selectedButton, addToCartButton);
+
+    });
 }
 
