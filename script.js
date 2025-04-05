@@ -75,39 +75,55 @@ function orderScreenOverlay() {
 }
 
 function addToCartButtonSelected(itemsData) {
+    
+    const cartItems = {};
 
     document.querySelector('#desserts-list').addEventListener('click', (e) => {
-        const addToCartButton = e.target.closest('.add-to-cart-button');
-        if (!addToCartButton) return;
-
-        const itemIndex = addToCartButton.getAttribute('data-index');
-        const itemData = itemsData[itemIndex];
-
-        console.log('Dados do item clicado:', itemData);
-
-        const imageDiv = addToCartButton.closest('.image-div');
-        const image = imageDiv.querySelector('img');
-
-        image.style.outline = '2px solid var(--font-red-color)';
-        image.style.outlineOffSet = '0';
-
-        const parentDiv = addToCartButton.parentElement;
-
-        const selectedButton = document.createElement('button');
-        selectedButton.className = 'add-to-cart-button selected';
-        selectedButton.setAttribute('data-index', itemIndex);
-        selectedButton.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="none" viewBox="0 0 10 2">
-                    <path fill="currentColor" d="M0 .375h10v1.25H0V.375Z"/>
-                </svg>
-                <span>1</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
-                    <path fill="currentColor" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/>
-                </svg>
-            `;
-
-        parentDiv.replaceChild(selectedButton, addToCartButton);
-
+        const target = e.target;
+        
+        if (target.classList.contains('add-to-cart-button') && 
+            !target.classList.contains('selected')) {
+            
+            const itemIndex = target.getAttribute('data-index');
+            cartItems[itemIndex] = 1; 
+            
+            transformToQuantityControl(target, itemIndex);
+            highlightItem(target);
+            console.log('Quantidades atualizadas:', cartItems);
+        }
+        
+        if (target.closest('.icon-plus, .icon-minus')) {
+            const button = target.closest('.add-to-cart-button.selected');
+            const itemIndex = button.getAttribute('data-index');
+            const quantitySpan = button.querySelector('.quantity-value');
+            
+            if (target.closest('.icon-plus')) {
+                cartItems[itemIndex] += 1;
+            } else if (cartItems[itemIndex] > 1) {
+                cartItems[itemIndex] -= 1;
+            }
+            
+            quantitySpan.textContent = cartItems[itemIndex];
+            console.log('Quantidades atualizadas:', cartItems);
+        }
     });
-}
 
+    function transformToQuantityControl(button, itemIndex) {
+        button.classList.add('selected');
+        button.innerHTML = `
+            <svg class="icon-minus" width="10" height="2" viewBox="0 0 10 2">
+                <path fill="currentColor" d="M0 .375h10v1.25H0V.375Z"/>
+            </svg>
+            <span class="quantity-value">1</span>
+            <svg class="icon-plus" width="10" height="10" viewBox="0 0 10 10">
+                <path fill="currentColor" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/>
+            </svg>
+        `;
+    }
+
+    function highlightItem(button) {
+        const img = button.closest('.image-div').querySelector('img');
+        img.style.outline = '2px solid red';
+        img.style.outlineOffset = '2px';
+    }
+}

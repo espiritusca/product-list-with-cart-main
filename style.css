@@ -3,6 +3,7 @@
     --bg-cart-color: white;
 
     --font-red-color: hsl(14, 86%, 42%);
+    --font-red-color-hover: hsl(14, 93%, 24%);
     --font-title-color: hsl(14, 65%, 9%);
     --font-category-color: hsl(12, 20%, 44%);
 
@@ -155,7 +156,6 @@ aside {
 
 .cart-section {
     background-color: var(--bg-cart-color);
-    height: 250px;
     border-radius: 10px;
     padding: 20px;
 }
@@ -176,6 +176,21 @@ h2 {
 
 .empty-cart-figure figcaption {
     color: var(--font-category-color);
+}
+
+#cart-button {
+    background-color: var(--font-red-color);
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#cart-button:hover {
+    background-color: var(--font-button-hover-color);
 }
 
 /* ORDER */
@@ -290,4 +305,8 @@ h2 {
     border-radius: 20px;
     cursor: pointer;
     margin-top: 20px;
+}
+
+.new-order-button:hover {
+    background-color: var(--font-red-color-hover);
 }
