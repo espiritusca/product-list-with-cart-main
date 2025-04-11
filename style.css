@@ -6,6 +6,7 @@
     --font-red-color-hover: hsl(14, 93%, 24%);
     --font-title-color: hsl(14, 65%, 9%);
     --font-category-color: hsl(12, 20%, 44%);
+    --font-light-rose-color: hsl(7, 20%, 60%);
 
     --font-button-hover-color: hsl(14, 94%, 26%);
 }
@@ -178,10 +179,98 @@ h2 {
     color: var(--font-category-color);
 }
 
+/* CART */
+
+.cart-section .item-cart-article {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 80px;
+    justify-content: space-between;
+    border-bottom: 1px solid hsl(13, 31%, 94%);
+}
+
+.details-item-cart-div p {
+    color: var(--font-title-color);
+    font-weight: 600;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.unit-count-span {
+    color: var(--font-red-color);
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.unit-value-span {
+    color: var(--font-light-rose-color);
+    margin-right: 5px;
+}
+
+.sub-total-cart-item-span {
+    color: var(--font-category-color);
+    font-weight: bold;
+}
+
+.item-cart-article .remove-icon-cart-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
+
+.remove-icon-cart-div svg {
+    display: block;
+    width: 19px;
+    height: 19px;
+    color: var(--font-light-rose-color);
+    border: solid var(--font-light-rose-color) 1px;
+    border-radius: 50%;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.remove-icon-cart-div svg:hover {
+    color: var(--font-title-color);
+    border-color: var(--font-title-color);
+}
+
+.total-order-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+}
+
+.total-order-div .total-order-text-span {
+    color: var(--font-title-color);
+}
+
+.total-order-div .total-order-span {
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--font-title-color);
+}
+
+.carbon-neutral-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background-color: var(--bg-main-color);
+    border-radius: 10px;
+}
+
+.carbon-neutral-div img {
+    width: 25px;
+    margin-right: 5px;
+}
+
 #cart-button {
     background-color: var(--font-red-color);
     color: white;
-    padding: 10px 25px;
+    padding: 12px 0;
     border: none;
     border-radius: 20px;
     cursor: pointer;
@@ -193,7 +282,7 @@ h2 {
     background-color: var(--font-button-hover-color);
 }
 
-/* ORDER */
+/* ORDER OVERLAY */
 
 #order-overlay-div {
     display: none;
@@ -300,7 +389,7 @@ h2 {
 .new-order-button {
     background-color: var(--font-red-color);
     color: white;
-    padding: 10px 25px;
+    padding: 12px 0;
     border: none;
     border-radius: 20px;
     cursor: pointer;
