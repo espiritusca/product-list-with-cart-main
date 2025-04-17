@@ -303,7 +303,7 @@ h2 {
     flex-direction: column;
     background-color: var(--bg-cart-color);
     width: 500px;
-    height: 500px;
+    max-height: 700px;
     padding: 40px;
     border-radius: 10px;
 }
@@ -315,6 +315,7 @@ h2 {
 
 .orders-overlay-section {
     margin-top: 20px;
+    overflow: auto;
 }
 
 .orders-overlay-section .order-article {
